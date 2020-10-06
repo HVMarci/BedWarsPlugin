@@ -1,0 +1,3 @@
+do_tnt_explode: false
+can_break_iron_block: false
+can_use_potions: true

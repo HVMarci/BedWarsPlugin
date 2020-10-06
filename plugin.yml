@@ -1,0 +1,29 @@
+name: BedWars
+version: 1.4.0
+main: me.hvmarci.bedwars.Main
+author: HVMarci
+description: Plugin for BedWars
+prefix: BW
+api-version: 1.13
+
+commands:
+  gamemode:
+   aliases: [gm]
+   description: /gamemode
+  spawnhuman:
+   description: Lerak egy NPC playert
+  opstuff:
+   description: DANGER
+   aliases: [ops]
+  birka:
+   description: Birkulj meg
+   aliases: [bir]
+  start:
+   description: Elkeddenek spawnolni az itemek
+   aliases: [strt, str, indit, indul, ind]
+  allit:
+   description: asdLOL
+   aliases: [stp, randnumgen, allitalalemartekecseg]
+  thor:
+   description: THOR
+   aliases: [ligthning, villam, villampalca]
