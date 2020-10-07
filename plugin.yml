@@ -9,7 +9,7 @@ api-version: 1.13
 commands:
   gamemode:
    aliases: [gm]
-   description: /gamemode
+   description: /gamemode (0|1|2|3|survival|creative|adventure|spectator|s|c) [Player]
   spawnhuman:
    description: Lerak egy NPC playert
   opstuff:
@@ -27,3 +27,5 @@ commands:
   thor:
    description: THOR
    aliases: [ligthning, villam, villampalca]
+  kapa:
+   description: /kapa [0-50] [fa|ko|vas|arany|gyemant|netherite]

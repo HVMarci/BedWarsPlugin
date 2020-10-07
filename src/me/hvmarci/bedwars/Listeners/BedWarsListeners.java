@@ -12,6 +12,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -34,7 +35,7 @@ public class BedWarsListeners implements Listener {
 	@EventHandler
 	public void onVillamPalca(PlayerInteractEvent e) {
 		try {
-			if (e.getItem().equals(idec.villamPalca())) {
+			if (e.getItem().equals(idec.villamPalca()) && (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 				Block b = e.getPlayer().getTargetBlock(50);
 				if (b != null) {
 					Location loc = b.getLocation();
