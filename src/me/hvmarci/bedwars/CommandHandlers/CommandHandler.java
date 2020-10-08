@@ -13,7 +13,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Sheep;
@@ -21,8 +20,6 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.util.Vector;
-
 import me.hvmarci.bedwars.ItemDeclarations;
 import me.hvmarci.bedwars.Main;
 
@@ -103,7 +100,14 @@ public class CommandHandler implements CommandExecutor {
 				inv.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
 				inv.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
 				inv.setHelmet(new ItemStack(Material.DIAMOND_HELMET));
-				inv.addItem(idec.faKard());
+				inv.addItem(new ItemStack(Material.DIAMOND_SWORD));
+				inv.addItem(new ItemStack(Material.BOW));
+				inv.addItem(new ItemStack(Material.COBBLESTONE, 64));
+				inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
+				inv.addItem(new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 1));
+				inv.addItem(new ItemStack(Material.ARROW, 64));
+				inv.addItem(new ItemStack(Material.COOKED_PORKCHOP, 64));
+				//inv.addItem(idec.faKard());
 				
 				players.forEach(i -> {
 					i.sendMessage("§a" + p.getName() + " §cDONÁTOLT §a magának egy " + ChatColor.MAGIC+ "banánt!!");
@@ -126,27 +130,7 @@ public class CommandHandler implements CommandExecutor {
 		} else if (cmd.getName().equals("start")) {
 			
 			
-			plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-				public void run() {
-					Location sp1 = new Location(plugin.getServer().getWorld("world"), 1, 11, 85);
-				  	sp1.getWorld().dropItem(sp1, new ItemStack(Material.IRON_INGOT));
-				}
-			}, 20l, 20l);
 			
-			plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-				public void run() {
-					Location sp1 = new Location(plugin.getServer().getWorld("world"), 1, 11, 85);
-				  	sp1.getWorld().dropItem(sp1, new ItemStack(Material.GOLD_INGOT));
-				}
-			}, 200l, 200l);
-			
-			plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-				public void run() {
-					Location sp1 = new Location(plugin.getServer().getWorld("world"), 17.5, 12, 131.5);
-				  	Item item = sp1.getWorld().dropItem(sp1, new ItemStack(Material.EMERALD));
-				  	item.setVelocity(new Vector(0,0.3,0));
-				}
-			}, 100l, 100l);
 			
 		} else if (cmd.getName().equals("allit")) {
 			plugin.getServer().getScheduler().cancelTasks(plugin);

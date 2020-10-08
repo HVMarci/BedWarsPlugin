@@ -15,13 +15,31 @@ public class KapaHandler implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player p = (Player) sender;
-			
-			ItemStack kapa = new ItemStack(Material.DIAMOND_HOE);
-			ItemMeta im = kapa.getItemMeta();
-			im.addEnchant(Enchantment.DAMAGE_ALL, 30, true);
-			kapa.setItemMeta(im);
-			p.getInventory().addItem(kapa);
-			return true;
+			if (args.length == 0) {
+				ItemStack kapa = new ItemStack(Material.DIAMOND_HOE);
+				ItemMeta im = kapa.getItemMeta();
+				im.addEnchant(Enchantment.DAMAGE_ALL, 30, true);
+				kapa.setItemMeta(im);
+				p.getInventory().addItem(kapa);
+				p.sendMessage("§1Kaptál kapát!");
+				return true;
+			} else if (args.length == 1) {
+				try {
+					ItemStack kapa = new ItemStack(Material.DIAMOND_HOE);
+					ItemMeta im = kapa.getItemMeta();
+					
+					im.addEnchant(Enchantment.DAMAGE_ALL, Integer.parseInt(args[0]), true);
+					kapa.setItemMeta(im);
+					p.getInventory().addItem(kapa);
+					p.sendMessage("§1Kaptál kapát!");
+					return true;
+				} catch(Exception e) {
+					p.sendMessage("§cSzámot adj meg!");
+					return false;
+				}
+			} else {
+				return false;
+			}
 		} else {
 			sender.sendMessage("§cJátékos parancs!");
 			return false;

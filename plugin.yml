@@ -29,3 +29,6 @@ commands:
    aliases: [ligthning, villam, villampalca]
   kapa:
    description: /kapa [0-50] [fa|ko|vas|arany|gyemant|netherite]
+   usage: /kapa [0-50] [fa|ko|vas|arany|gyemant|netherite]
+  invensee:
+   description: Szokasos invensee
