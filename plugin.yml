@@ -32,3 +32,7 @@ commands:
    usage: /kapa [0-50] [fa|ko|vas|arany|gyemant|netherite]
   invensee:
    description: Szokasos invensee
+  freeze:
+   usage: /freeze (Player)
+  unfreeze:
+   usage: /frost (Player)
