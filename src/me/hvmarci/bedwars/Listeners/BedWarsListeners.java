@@ -34,7 +34,7 @@ public class BedWarsListeners implements Listener {
 	
 	@EventHandler
 	public void onVillamPalca(PlayerInteractEvent e) {
-		try {
+		/*try {
 			if (e.getItem().equals(idec.villamPalca()) && (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 				Block b = e.getPlayer().getTargetBlock(50);
 				if (b != null) {
@@ -44,7 +44,7 @@ public class BedWarsListeners implements Listener {
 			}
 		} catch (Exception ex) {
 			
-		}
+		}*/
 	}
 	
 	

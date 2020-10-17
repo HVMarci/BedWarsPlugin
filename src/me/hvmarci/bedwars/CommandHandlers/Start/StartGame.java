@@ -1,4 +1,4 @@
-package me.hvmarci.bedwars.CommandHandlers;
+package me.hvmarci.bedwars.CommandHandlers.Start;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

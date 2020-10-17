@@ -102,7 +102,7 @@ public class CommandHandler implements CommandExecutor {
 				inv.setHelmet(new ItemStack(Material.DIAMOND_HELMET));
 				inv.addItem(new ItemStack(Material.DIAMOND_SWORD));
 				inv.addItem(new ItemStack(Material.BOW));
-				inv.addItem(new ItemStack(Material.COBBLESTONE, 64));
+				inv.addItem(new ItemStack(Material.COBBLESTONE, 3*64));
 				inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 3));
 				inv.addItem(new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 1));
 				inv.addItem(new ItemStack(Material.ARROW, 64));

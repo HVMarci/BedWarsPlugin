@@ -1,5 +1,5 @@
 name: BedWars
-version: 1.4.0
+version: 1.5.0
 main: me.hvmarci.bedwars.Main
 author: HVMarci
 description: Plugin for BedWars
@@ -36,3 +36,10 @@ commands:
    usage: /freeze (Player)
   unfreeze:
    usage: /frost (Player)
+  pvp:
+   description: pvp
+  arenaurites:
+   description: Leuriti a blokkokat az arenabol
+   aliases: [urit, urites]
+  stop:
+   description: stop
