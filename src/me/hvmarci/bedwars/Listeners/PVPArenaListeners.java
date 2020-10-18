@@ -1,15 +1,15 @@
 package me.hvmarci.bedwars.Listeners;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
 import me.hvmarci.bedwars.Main;
 
@@ -48,13 +48,17 @@ public class PVPArenaListeners implements Listener{
 	}
 	
 	@EventHandler
-	public void onDeath(PlayerRespawnEvent e) {
-		//if (isInArena(e.getPlayer().getLocation())) {
-			Location loc = new Location(Bukkit.getWorld(Main.pvpWorld), 0.5, 64, 0.5);
-			e.getPlayer().setGameMode(GameMode.SURVIVAL);
-			e.setRespawnLocation(loc);
-			
-		//}
+	public void onDeath(PlayerDeathEvent e) {
+		
+		Player p = e.getEntity();
+		Location loc = p.getLocation();
+		
+		if (isInArena(loc)) {
+			Location respawnLoc = new Location(Bukkit.getWorld(Main.pvpWorld), 0.5, 64, 0.5);
+//			e.getEntity().setGameMode(GameMode.SPECTATOR);
+			//e.setCancelled(true);
+			p.teleport(respawnLoc);
+		}
 	}
 	
 }

@@ -43,3 +43,5 @@ commands:
    aliases: [urit, urites]
   stop:
    description: stop
+  game:
+   description: Elteleportal a palyara

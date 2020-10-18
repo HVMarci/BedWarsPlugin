@@ -75,13 +75,22 @@ public class CommandHandler implements CommandExecutor {
 			}
 		} else if (cmd.getName().equals("spawnhuman")) {
 			if (sender instanceof Player) {
+				
 				Player p = (Player) sender;
 				Location loc = new Location(p.getLocation().getWorld(), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ());
 				
 				LivingEntity shop = (Zombie) loc.getWorld().spawnEntity(loc, EntityType.ZOMBIE);
+				if (args.length == 1) {
+					try {
+						shop.setRotation(Integer.parseInt(args[0]), 0);
+					} catch (Exception e) {
+						
+					}
+				}
+				
 				shop.setInvulnerable(true);
 				shop.setAI(false);
-				shop.setSilent(false);
+				shop.setSilent(true);
 				shop.setCustomName(ChatColor.AQUA+"Boltos");
 				shop.setCustomNameVisible(true);
 				p.sendMessage("§aBoltos megidézve!");
@@ -110,7 +119,7 @@ public class CommandHandler implements CommandExecutor {
 				//inv.addItem(idec.faKard());
 				
 				players.forEach(i -> {
-					i.sendMessage("§a" + p.getName() + " §cDONÁTOLT §a magának egy " + ChatColor.MAGIC+ "banánt!!");
+					i.sendMessage("§a" + p.getName() + " §cDONÁTOLT§a magának egy " + ChatColor.MAGIC+ "banánt!!");
 				});
 				
 			} else {
@@ -127,11 +136,6 @@ public class CommandHandler implements CommandExecutor {
 					sheep.setColor(DyeColor.MAGENTA);
 				}
 			}
-		} else if (cmd.getName().equals("start")) {
-			
-			
-			
-			
 		} else if (cmd.getName().equals("allit")) {
 			plugin.getServer().getScheduler().cancelTasks(plugin);
 		} else if (cmd.getName().equals("thor")) {

@@ -1,7 +1,9 @@
 package me.hvmarci.bedwars;
 
 import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,6 +16,7 @@ import me.hvmarci.bedwars.CommandHandlers.Start.StartGame;
 import me.hvmarci.bedwars.CommandHandlers.GameModeHandler;
 import me.hvmarci.bedwars.CommandHandlers.Invensee;
 import me.hvmarci.bedwars.CommandHandlers.KapaHandler;
+import me.hvmarci.bedwars.CommandHandlers.TpToGame;
 import me.hvmarci.bedwars.CommandHandlers.TpToPVPArena;
 import me.hvmarci.bedwars.Listeners.BedWarsListeners;
 import me.hvmarci.bedwars.Listeners.FrostOrNot;
@@ -25,10 +28,11 @@ public class Main extends JavaPlugin implements Listener {
 
 	public static String pluginName = "BedWars";
 	public static String buildWorld = "build";
-	public static String mainWorld = "map";
+	public static String mainWorld = "game";
 	public static String pvpWorld = "pvp";
 	public static ArrayList<String> frost = new ArrayList<String>();
 	public static ArrayList<Block> arenaPlacedBlocks = new ArrayList<Block>();
+	public static ArrayList<Location> spawnLocs = new ArrayList<Location>();
 	
 	@Override
 	public void onEnable() {
@@ -54,11 +58,14 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("pvp").setExecutor(new TpToPVPArena());
 		getCommand("arenaurites").setExecutor(new ArenaBlokkokTorlese());
 		getCommand("stop").setExecutor(new Stop());
+		getCommand("game").setExecutor(new TpToGame());
 		
 		getConfig().options().copyDefaults(true);
 		saveConfig();
 		
-		
+		spawnLocs.add(new Location(this.getServer().getWorld(mainWorld), -28, 11, -69));
+		spawnLocs.add(new Location(this.getServer().getWorld(mainWorld), -16, 11, 83));
+		spawnLocs.add(new Location(this.getServer().getWorld(mainWorld), -87, 11, -6));
 	}
 
 	@Override
