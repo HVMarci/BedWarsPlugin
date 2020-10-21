@@ -25,8 +25,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
-import me.hvmarci.bedwars.ItemDeclarations;
 import me.hvmarci.bedwars.Team;
+import me.hvmarci.bedwars.ItemDeclarations.ItemDeclarations;
+import me.hvmarci.bedwars.ItemDeclarations.ItemType;
 
 public class BedWarsListeners implements Listener {
 	
@@ -36,7 +37,7 @@ public class BedWarsListeners implements Listener {
 	@EventHandler
 	public void onVillamPalca(PlayerInteractEvent e) {
 		try {
-			if (e.getItem().equals(idec.villamPalca()) && (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+			if (e.getItem().equals(idec.getItem(ItemType.VILLAMPALCA, false)) && (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)) {
 				Block b = e.getPlayer().getTargetBlock(50);
 				if (b != null) {
 					Location loc = b.getLocation();

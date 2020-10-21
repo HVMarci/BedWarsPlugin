@@ -12,7 +12,8 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.hvmarci.bedwars.ItemDeclarations;
+import me.hvmarci.bedwars.ItemDeclarations.ItemDeclarations;
+import me.hvmarci.bedwars.ItemDeclarations.ItemType;
 
 public class ShopListener implements Listener {
 
@@ -28,16 +29,16 @@ public class ShopListener implements Listener {
 				inv.clear(i);
 			}
 			
-			inv.setItem(10, idec.gyapju());
-			inv.setItem(11, idec.deszka());
-			inv.setItem(12, idec.endKo());
-			inv.setItem(13, idec.obszidian());
-			inv.setItem(19, idec.koKard());
-			inv.setItem(20, idec.vasKard());
-			inv.setItem(21, idec.gyemantKard());
-			inv.setItem(22, idec.netheritKard());
-			inv.setItem(23, idec.netheritBalta());
-			inv.setItem(28, idec.tolgyCsemete());
+			inv.setItem(10, idec.getItem(ItemType.GYAPJU, true));
+			inv.setItem(11, idec.getItem(ItemType.DESZKA, true));
+			inv.setItem(12, idec.getItem(ItemType.ENDKO, true));
+			inv.setItem(13, idec.getItem(ItemType.OBSZIDIAN, true));
+			inv.setItem(19, idec.getItem(ItemType.KOKARD, true));
+			inv.setItem(20, idec.getItem(ItemType.VASKARD, true));
+			inv.setItem(21, idec.getItem(ItemType.GYEMANTKARD, true));
+			inv.setItem(22, idec.getItem(ItemType.NETHERITKARD, true));
+			inv.setItem(23, idec.getItem(ItemType.NETHERITFEJSZE, true));
+			inv.setItem(28, idec.getItem(ItemType.TOLGYCSEMETE, true));
 		
 			e.getPlayer().openInventory(inv);
 		}
@@ -54,92 +55,92 @@ public class ShopListener implements Listener {
 			e.setCancelled(true);
 			
 			try {
-				if (e.getCurrentItem().equals(idec.gyapju())) {
+				if (e.getCurrentItem().equals(idec.getItem(ItemType.GYAPJU, true))) {
 					
 					if(p.getInventory().containsAtLeast(new ItemStack(Material.IRON_INGOT), 4)) {
-						p.getInventory().addItem(new ItemStack(Material.RED_WOOL, 16));
+						p.getInventory().addItem(idec.getItem(ItemType.GYAPJU, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.IRON_INGOT, 4));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég vasad!");
 					}
 					
-				} else if (e.getCurrentItem().equals(idec.deszka())) {
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.DESZKA, true))) {
 					
 					if(p.getInventory().containsAtLeast(new ItemStack(Material.GOLD_INGOT), 4)) {
-						p.getInventory().addItem(new ItemStack(Material.OAK_PLANKS, 16));
+						p.getInventory().addItem(idec.getItem(ItemType.DESZKA, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.GOLD_INGOT, 4));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég aranyad!");
 					}
 					
-				}  else if (e.getCurrentItem().equals(idec.endKo())) {
+				}  else if (e.getCurrentItem().equals(idec.getItem(ItemType.ENDKO, true))) {
 					
 					if(p.getInventory().containsAtLeast(new ItemStack(Material.IRON_INGOT), 12)) {
-						p.getInventory().addItem(new ItemStack(Material.END_STONE, 12));
+						p.getInventory().addItem(idec.getItem(ItemType.ENDKO, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.IRON_INGOT, 12));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég vasad!");
 					}
 					
-				} else if (e.getCurrentItem().equals(idec.obszidian())) {
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.OBSZIDIAN, true))) {
 					
 					if(p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 4)) {
-						p.getInventory().addItem(new ItemStack(Material.OBSIDIAN, 4));
+						p.getInventory().addItem(idec.getItem(ItemType.OBSZIDIAN, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 4));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég smaragdod!");
 					}
 					
-				} else if (e.getCurrentItem().equals(idec.koKard())) {
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.KOKARD, true))) {
 					
 					if(p.getInventory().containsAtLeast(new ItemStack(Material.IRON_INGOT), 10)) {
-						p.getInventory().addItem(new ItemStack(Material.STONE_SWORD, 1));
+						p.getInventory().addItem(idec.getItem(ItemType.KOKARD, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.IRON_INGOT, 10));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég vasad!");
 					}
 					
-				} else if (e.getCurrentItem().equals(idec.vasKard())) {
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.VASKARD, true))) {
 					
 					if(p.getInventory().containsAtLeast(new ItemStack(Material.GOLD_INGOT), 7)) {
-						p.getInventory().addItem(new ItemStack(Material.IRON_SWORD, 1));
+						p.getInventory().addItem(idec.getItem(ItemType.VASKARD, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.GOLD_INGOT, 7));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég aranyad!");
 					}
 					
-				} else if (e.getCurrentItem().equals(idec.gyemantKard())) {
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.GYEMANTKARD, true))) {
 					
 					if (p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 4)) {
-						p.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
+						p.getInventory().addItem(idec.getItem(ItemType.GYEMANTKARD, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 4));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég smaragdod!");
 					}
 					
-				} else if (e.getCurrentItem().equals(idec.netheritKard())) {
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.NETHERITKARD, true))) {
 					
 					if (p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 6)) {
-						p.getInventory().addItem(new ItemStack(Material.NETHERITE_SWORD, 1));
+						p.getInventory().addItem(idec.getItem(ItemType.NETHERITKARD, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 6));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég smaragdod!");
 					}
 					
-				} else if (e.getCurrentItem().equals(idec.netheritBalta())) {
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.NETHERITFEJSZE, true))) {
 					
 					if (p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 11)) {
-						p.getInventory().addItem(new ItemStack(idec.netheritBalta()));
+						p.getInventory().addItem(idec.getItem(ItemType.NETHERITFEJSZE, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 11));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég smaragdod!");
 					}
 					
-				} else if (e.getCurrentItem().equals(idec.tolgyCsemete())) {
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.TOLGYCSEMETE, true))) {
 					
 					if(p.getInventory().containsAtLeast(new ItemStack(Material.GOLD_INGOT), 5)) {
-						p.getInventory().addItem(new ItemStack(Material.OAK_SAPLING, 2));
-						p.getInventory().addItem(new ItemStack(Material.DIRT, 2));
+						p.getInventory().addItem(idec.getItem(ItemType.TOLGYCSEMETE, false));
+						p.getInventory().addItem(idec.getItem(ItemType.FOLD, false));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.GOLD_INGOT, 5));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég aranyad!");

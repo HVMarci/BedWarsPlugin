@@ -20,8 +20,10 @@ import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
-import me.hvmarci.bedwars.ItemDeclarations;
+
 import me.hvmarci.bedwars.Main;
+import me.hvmarci.bedwars.ItemDeclarations.ItemDeclarations;
+import me.hvmarci.bedwars.ItemDeclarations.ItemType;
 
 public class CommandHandler implements CommandExecutor {
 	
@@ -144,7 +146,7 @@ public class CommandHandler implements CommandExecutor {
 					i.sendMessage(sender.getName() + " Thor lett!");
 				});
 				
-				((Player) sender).getInventory().addItem(idec.villamPalca());
+				((Player) sender).getInventory().addItem(idec.getItem(ItemType.VILLAMPALCA, false));
 			}
 		}
 
