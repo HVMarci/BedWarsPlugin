@@ -26,6 +26,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 import me.hvmarci.bedwars.ItemDeclarations;
+import me.hvmarci.bedwars.Team;
 
 public class BedWarsListeners implements Listener {
 	
@@ -90,7 +91,9 @@ public class BedWarsListeners implements Listener {
 
 		Collection<? extends Player> players = e.getPlayer().getServer().getOnlinePlayers();
 		Player player = e.getPlayer();
-
+		if (Team.isInTeam(player)) {
+			Team.getTeam(Team.getTeamType(player)).removePlayer(player);
+		}
 		players.forEach(i -> {
 			i.sendMessage(ChatColor.GOLD + player.getName() + ChatColor.BLUE + " elhagyta a szervert.");
 		});

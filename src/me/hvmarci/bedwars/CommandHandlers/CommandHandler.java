@@ -16,7 +16,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Sheep;
-import org.bukkit.entity.Zombie;
+import org.bukkit.entity.Villager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
@@ -79,7 +79,7 @@ public class CommandHandler implements CommandExecutor {
 				Player p = (Player) sender;
 				Location loc = new Location(p.getLocation().getWorld(), p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ());
 				
-				LivingEntity shop = (Zombie) loc.getWorld().spawnEntity(loc, EntityType.ZOMBIE);
+				LivingEntity shop = (Villager) loc.getWorld().spawnEntity(loc, EntityType.VILLAGER);
 				if (args.length == 1) {
 					try {
 						shop.setRotation(Integer.parseInt(args[0]), 0);

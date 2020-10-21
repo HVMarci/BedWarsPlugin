@@ -18,6 +18,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 import me.hvmarci.bedwars.Main;
+import me.hvmarci.bedwars.Team;
+import me.hvmarci.bedwars.TeamType;
 
 public class StartGame implements CommandExecutor {
 	
@@ -42,7 +44,7 @@ public class StartGame implements CommandExecutor {
 			  	sp2.getWorld().dropItem(sp2, new ItemStack(Material.IRON_INGOT));
 			  	sp3.getWorld().dropItem(sp3, new ItemStack(Material.IRON_INGOT));
 			}
-		}, 20l, 20l);
+		}, 100l, 40l);
 		
 		// arany
 		plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
@@ -54,7 +56,7 @@ public class StartGame implements CommandExecutor {
 			  	sp2.getWorld().dropItem(sp2, new ItemStack(Material.GOLD_INGOT));
 			  	sp3.getWorld().dropItem(sp3, new ItemStack(Material.GOLD_INGOT));
 			}
-		}, 200l, 200l);
+		}, 220l, 160l);
 		
 		// smaragd
 		plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
@@ -72,7 +74,7 @@ public class StartGame implements CommandExecutor {
 			  	Item item4 = sp1.getWorld().dropItem(sp4, new ItemStack(Material.EMERALD));
 			  	item4.setVelocity(new Vector(0,0.3,0));
 			}
-		}, 100l, 100l);
+		}, 1300l, 1200l);
 		
 		
 		Bukkit.getServer().getWorld(Main.mainWorld).getPlayers().forEach(i->{
@@ -90,13 +92,13 @@ public class StartGame implements CommandExecutor {
 	static int startSch;
 	public static void start() {
 		startSch = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-			int remainingTime = 5;
+			int remainingTime = 6;
 			World mainWorld = Bukkit.getServer().getWorld(Main.mainWorld);
 			@Override
 			public void run() {
 				
 				mainWorld.getPlayers().forEach(i->{
-					i.sendTitle("Starting in " + remainingTime, "", 1, 18, 1);
+					i.sendTitle("§cStarting in §a" + (remainingTime-1), "", 1, 18, 1);
 				});
 				remainingTime--;
 				
@@ -109,9 +111,28 @@ public class StartGame implements CommandExecutor {
 					do {
 						Random rand = new Random();
 				    	Player randPlayer = playerList.get(rand.nextInt(playerList.size()));
-				    	Location randLoc = Main.spawnLocs.get(rand.nextInt(Main.spawnLocs.size()));
-				    	Main.spawnLocs.remove(randLoc);
-				    	randPlayer.teleport(randLoc);
+				    	Location loc = Main.spawnLocs.get(TeamType.RED);
+				    	switch (playerList.size()) {
+				    	case 1:
+				    		loc = Main.spawnLocs.get(TeamType.RED);
+				    		Team.addToTeam(TeamType.RED, randPlayer);
+				    		break;
+				    	case 2:
+				    		loc = Main.spawnLocs.get(TeamType.BLUE);
+				    		Team.addToTeam(TeamType.BLUE, randPlayer);
+				    		break;
+				    	case 3:
+				    		loc = Main.spawnLocs.get(TeamType.GREEN);
+				    		Team.addToTeam(TeamType.GREEN, randPlayer);
+				    		break;
+				    	case 4:
+				    		loc = Main.spawnLocs.get(TeamType.YELLOW);
+				    		Team.addToTeam(TeamType.YELLOW, randPlayer);
+				    		break;
+				    	}
+				    	
+				    	Bukkit.broadcastMessage(randPlayer.getCustomName());
+				    	randPlayer.teleport(loc);
 				    	playerList.remove(randPlayer);
 					} while (playerList.size() > 0);
 				    

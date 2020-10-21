@@ -21,7 +21,7 @@ public class TpToGame implements CommandExecutor {
 			Location loc = p.getLocation().set(0.5, 64, 0.5);
 			
 			loc.setWorld(w);
-			p.setGameMode(GameMode.SPECTATOR);
+			p.setGameMode(GameMode.CREATIVE);
 			p.teleport(loc);
 			Bukkit.broadcastMessage(ChatColor.GOLD + p.getName() + "§b felcsatlakozott a §omain §r§bszerverre!");
 			return true;

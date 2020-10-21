@@ -78,7 +78,7 @@ public class ItemDeclarations {
 		ItemStack is = new ItemStack(Material.DIAMOND_SWORD);
 		ItemMeta im = is.getItemMeta();
 
-		is.setItemMeta(createDefaultItemMeta(im, "Gyémántkard", "3 smaragd"));
+		is.setItemMeta(createDefaultItemMeta(im, "Gyémántkard", "4 smaragd"));
 		return is;
 	}
 	
@@ -115,11 +115,23 @@ public class ItemDeclarations {
 		return is;
 	}
 	
+	public ItemStack netheritBalta() {
+		ItemStack is = new ItemStack(Material.NETHERITE_AXE);
+		ItemMeta im = createDefaultItemMeta(is.getItemMeta(), "Netheritfejsze", "11 smaragd");
+		
+		im.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
+		im.removeEnchant(Enchantment.PROTECTION_ENVIRONMENTAL);
+		im.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
+		is.setItemMeta(im);
+		return is;
+	}
+	
 	public ItemStack villamPalca() {
 		ItemStack is = new ItemStack(Material.STICK);
 		ItemMeta im = is.getItemMeta();
 		
 		im.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 30, true);
+		
 		im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		im.setDisplayName("§bTHOR Kalapácsa");
 		

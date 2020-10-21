@@ -1,12 +1,18 @@
 package me.hvmarci.bedwars;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 import me.hvmarci.bedwars.CommandHandlers.ArenaBlokkokTorlese;
 import me.hvmarci.bedwars.CommandHandlers.CommandHandler;
@@ -18,7 +24,9 @@ import me.hvmarci.bedwars.CommandHandlers.Invensee;
 import me.hvmarci.bedwars.CommandHandlers.KapaHandler;
 import me.hvmarci.bedwars.CommandHandlers.TpToGame;
 import me.hvmarci.bedwars.CommandHandlers.TpToPVPArena;
+import me.hvmarci.bedwars.Listeners.BedBroke;
 import me.hvmarci.bedwars.Listeners.BedWarsListeners;
+import me.hvmarci.bedwars.Listeners.DeathListener;
 import me.hvmarci.bedwars.Listeners.FrostOrNot;
 import me.hvmarci.bedwars.Listeners.PVPArenaListeners;
 import me.hvmarci.bedwars.Listeners.ShopListener;
@@ -32,7 +40,10 @@ public class Main extends JavaPlugin implements Listener {
 	public static String pvpWorld = "pvp";
 	public static ArrayList<String> frost = new ArrayList<String>();
 	public static ArrayList<Block> arenaPlacedBlocks = new ArrayList<Block>();
-	public static ArrayList<Location> spawnLocs = new ArrayList<Location>();
+	public static Map<TeamType, Location> spawnLocs = new HashMap<TeamType, Location>();
+	public static ScoreboardManager scbm = Bukkit.getScoreboardManager();
+	public static Scoreboard scb = scbm.getMainScoreboard();
+
 	
 	@Override
 	public void onEnable() {
@@ -43,6 +54,8 @@ public class Main extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(new ShopListener(), this);
 		getServer().getPluginManager().registerEvents(new FrostOrNot(), this);
 		getServer().getPluginManager().registerEvents(new PVPArenaListeners(), this);
+		getServer().getPluginManager().registerEvents(new BedBroke(), this);
+		getServer().getPluginManager().registerEvents(new DeathListener(), this);
 		
 		getCommand("gamemode").setExecutor(new GameModeHandler());
 		getCommand("spawnhuman").setExecutor(new CommandHandler());
@@ -63,17 +76,32 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().options().copyDefaults(true);
 		saveConfig();
 		
-		spawnLocs.add(new Location(this.getServer().getWorld(mainWorld), -28, 11, -69));
-		spawnLocs.add(new Location(this.getServer().getWorld(mainWorld), -16, 11, 83));
-		spawnLocs.add(new Location(this.getServer().getWorld(mainWorld), -87, 11, -6));
+		spawnLocs.put(TeamType.RED, new Location(this.getServer().getWorld(mainWorld), -28, 11, -69));
+		spawnLocs.put(TeamType.BLUE, new Location(this.getServer().getWorld(mainWorld), -16, 11, 83));
+		spawnLocs.put(TeamType.GREEN, new Location(this.getServer().getWorld(mainWorld), -87, 11, -6));
+		
+		Team redTeam = scb.registerNewTeam("redTeam");
+		Team blueTeam = scb.registerNewTeam("blueTeam");
+		Team greenTeam = scb.registerNewTeam("greenTeam");
+		Team yellowTeam = scb.registerNewTeam("yellowTeam");
+		
+		redTeam.setColor(ChatColor.RED);
+		blueTeam.setColor(ChatColor.BLUE);
+		greenTeam.setColor(ChatColor.GREEN);
+		yellowTeam.setColor(ChatColor.YELLOW);
+		
+		redTeam.setAllowFriendlyFire(false);
+		blueTeam.setAllowFriendlyFire(false);
+		greenTeam.setAllowFriendlyFire(false);
+		yellowTeam.setAllowFriendlyFire(false);
 	}
 
 	@Override
 	public void onDisable() {
 		getServer().getConsoleSender().sendMessage("A BedWarsPlugin sikeresen leállt!");
+		scb.getTeams().forEach(i->{
+			i.unregister();
+		});
 	}
-
-	
-	
 
 }

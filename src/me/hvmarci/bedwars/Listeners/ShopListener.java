@@ -22,7 +22,7 @@ public class ShopListener implements Listener {
 	@EventHandler
 	public void onClickShop(PlayerInteractAtEntityEvent e) {
 		System.out.println(e.getRightClicked().getType());
-		if (e.getRightClicked().getType().equals(EntityType.ZOMBIE)) {
+		if (e.getRightClicked().getType().equals(EntityType.VILLAGER)) {
 			
 			for(int i = 0; i<45;i++) {
 				inv.clear(i);
@@ -36,6 +36,7 @@ public class ShopListener implements Listener {
 			inv.setItem(20, idec.vasKard());
 			inv.setItem(21, idec.gyemantKard());
 			inv.setItem(22, idec.netheritKard());
+			inv.setItem(23, idec.netheritBalta());
 			inv.setItem(28, idec.tolgyCsemete());
 		
 			e.getPlayer().openInventory(inv);
@@ -109,18 +110,27 @@ public class ShopListener implements Listener {
 					
 				} else if (e.getCurrentItem().equals(idec.gyemantKard())) {
 					
-					if(p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 3)) {
+					if (p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 4)) {
 						p.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
-						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 3));
+						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 4));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég smaragdod!");
 					}
 					
 				} else if (e.getCurrentItem().equals(idec.netheritKard())) {
 					
-					if(p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 6)) {
+					if (p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 6)) {
 						p.getInventory().addItem(new ItemStack(Material.NETHERITE_SWORD, 1));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 6));
+					} else {
+						p.sendMessage(ChatColor.RED + "Nincs elég smaragdod!");
+					}
+					
+				} else if (e.getCurrentItem().equals(idec.netheritBalta())) {
+					
+					if (p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 11)) {
+						p.getInventory().addItem(new ItemStack(idec.netheritBalta()));
+						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 11));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég smaragdod!");
 					}
@@ -129,6 +139,7 @@ public class ShopListener implements Listener {
 					
 					if(p.getInventory().containsAtLeast(new ItemStack(Material.GOLD_INGOT), 5)) {
 						p.getInventory().addItem(new ItemStack(Material.OAK_SAPLING, 2));
+						p.getInventory().addItem(new ItemStack(Material.DIRT, 2));
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.GOLD_INGOT, 5));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég aranyad!");
