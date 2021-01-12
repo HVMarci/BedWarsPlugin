@@ -22,7 +22,6 @@ public class ShopListener implements Listener {
 	
 	@EventHandler
 	public void onClickShop(PlayerInteractAtEntityEvent e) {
-		System.out.println(e.getRightClicked().getType());
 		if (e.getRightClicked().getType().equals(EntityType.VILLAGER)) {
 			
 			for(int i = 0; i<45;i++) {

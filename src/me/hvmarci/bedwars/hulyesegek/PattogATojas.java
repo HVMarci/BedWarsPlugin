@@ -20,7 +20,6 @@ public class PattogATojas implements Listener {
 			BlockFace bf = e.getHitBlockFace();
 			World w = e.getHitBlock().getWorld();
 			Location loc = e.getHitBlock().getLocation();
-			System.out.println(bf.toString());
 			switch (bf) {
 				case DOWN:
 					loc.add(0, -1, 0);
@@ -71,7 +70,6 @@ public class PattogATojas implements Listener {
 					//vec.setX((vec.getX()+0.5)/2);
 					break;
 				default:
-					System.out.println("asd");
 					break;
 			}
 			Entity egg = w.spawnEntity(loc, EntityType.CREEPER);

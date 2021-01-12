@@ -2,7 +2,6 @@ package me.hvmarci.bedwars;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -42,11 +41,10 @@ public class Main extends JavaPlugin implements Listener {
 	public static String pvpWorld = "pvp";
 	public static ArrayList<String> frost = new ArrayList<String>();
 	public static ArrayList<Block> arenaPlacedBlocks = new ArrayList<Block>();
-	public static Map<TeamType, Location> spawnLocs = new HashMap<TeamType, Location>();
+	public static final HashMap<TeamType, Location> spawnLocs = new HashMap<TeamType, Location>();
 	public static ScoreboardManager scbm = Bukkit.getScoreboardManager();
 	public static Scoreboard scb = scbm.getMainScoreboard();
 
-	
 	@Override
 	public void onEnable() {
 
@@ -60,7 +58,7 @@ public class Main extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(new DeathListener(), this);
 		//getServer().getPluginManager().registerEvents(new EggThrowEvent(), this);
 		//getServer().getPluginManager().registerEvents(new PattogATojas(), this);
-		getServer().getPluginManager().registerEvents(new SajatCucc(), this);
+		//getServer().getPluginManager().registerEvents(new SajatCucc(), this);
 		
 		getCommand("gamemode").setExecutor(new GameModeHandler());
 		getCommand("spawnhuman").setExecutor(new CommandHandler());
@@ -81,9 +79,10 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().options().copyDefaults(true);
 		saveConfig();
 		
-		spawnLocs.put(TeamType.RED, new Location(this.getServer().getWorld(mainWorld), -28, 11, -69));
-		spawnLocs.put(TeamType.BLUE, new Location(this.getServer().getWorld(mainWorld), -16, 11, 83));
+		spawnLocs.put(TeamType.BLUE, new Location(this.getServer().getWorld(mainWorld), -28, 11, -69));
+		spawnLocs.put(TeamType.RED, new Location(this.getServer().getWorld(mainWorld), -16, 11, 83));
 		spawnLocs.put(TeamType.GREEN, new Location(this.getServer().getWorld(mainWorld), -87, 11, -6));
+		spawnLocs.put(TeamType.YELLOW, new Location(this.getServer().getWorld(mainWorld), 90, 12, 12));
 		
 		Team redTeam = scb.registerNewTeam("redTeam");
 		Team blueTeam = scb.registerNewTeam("blueTeam");
