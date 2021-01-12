@@ -39,6 +39,7 @@ public class ShopListener implements Listener {
 			inv.setItem(22, idec.getItem(ItemType.NETHERITKARD, true));
 			inv.setItem(23, idec.getItem(ItemType.NETHERITFEJSZE, true));
 			inv.setItem(28, idec.getItem(ItemType.TOLGYCSEMETE, true));
+			inv.setItem(29, idec.getItem(ItemType.TOJAS, true));
 		
 			e.getPlayer().openInventory(inv);
 		}
@@ -144,6 +145,15 @@ public class ShopListener implements Listener {
 						p.getInventory().removeItemAnySlot(new ItemStack(Material.GOLD_INGOT, 5));
 					} else {
 						p.sendMessage(ChatColor.RED + "Nincs elég aranyad!");
+					}
+					
+				} else if (e.getCurrentItem().equals(idec.getItem(ItemType.TOJAS, true))) {
+					
+					if(p.getInventory().containsAtLeast(new ItemStack(Material.EMERALD), 2)) {
+						p.getInventory().addItem(idec.getItem(ItemType.TOJAS, false));
+						p.getInventory().removeItemAnySlot(new ItemStack(Material.EMERALD, 2));
+					} else {
+						p.sendMessage(ChatColor.RED + "Nincs elég smaragdod!");
 					}
 					
 				}

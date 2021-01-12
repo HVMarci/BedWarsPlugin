@@ -29,14 +29,14 @@ public class ItemDeclarations {
 		return im;
 	}
 	
-	public ItemStack getItem(ItemType m, boolean shop) {
+	public ItemStack getItem(ItemType material, boolean shop) {
 		ItemStack is = new ItemStack(Material.DIRT);
 		ItemMeta im = is.getItemMeta();
 		String nev;
 		String ar;
 		boolean hasEnchant;
 		
-		switch (m) {
+		switch (material) {
 		case GYAPJU:
 			nev = "Gyapjú";
 			ar = "4 vas";
@@ -48,6 +48,7 @@ public class ItemDeclarations {
 		case DESZKA:
 			nev = "Deszka";
 			ar = "4 arany";
+			if (Math.random() < 0.001) ar += "\nPala sajt vágódeszka 2 rozsdamentes acél késsel!";
 			hasEnchant = false;
 			is.setType(Material.OAK_PLANKS);
 			is.setAmount(16);
@@ -72,6 +73,7 @@ public class ItemDeclarations {
 		case KOKARD:
 			nev = "Kõkard";
 			ar = "10 vas";
+			if (Math.random() < 0.01) ar += "\nHát én nem hiszlek el téged...";
 			hasEnchant = false;
 			is.setType(Material.STONE_SWORD);
 			break;
@@ -79,6 +81,7 @@ public class ItemDeclarations {
 		case VASKARD:
 			nev = "Vaskard";
 			ar = "7 arany";
+			if (Math.random() < 0.05) ar += "\nA hülyéknek sem éri meg...";
 			hasEnchant = false;
 			is.setType(Material.IRON_SWORD);
 			break;
@@ -86,6 +89,7 @@ public class ItemDeclarations {
 		case GYEMANTKARD:
 			nev = "Gyémántkard";
 			ar = "4 smaragd";
+			if (Math.random() < 0.01) ar += "\nMost komolyan meg akarod venni???";
 			hasEnchant = false;
 			is.setType(Material.DIAMOND_SWORD);
 			break;
@@ -119,6 +123,13 @@ public class ItemDeclarations {
 			hasEnchant = false;
 			is.setType(Material.DIRT);
 			is.setAmount(2);
+			break;
+			
+		case TOJAS:
+			nev = "Bridge";
+			ar = "2 smaragd";
+			hasEnchant = false;
+			is.setType(Material.EGG);
 			break;
 			
 		case FAKARD:

@@ -31,6 +31,8 @@ import me.hvmarci.bedwars.Listeners.FrostOrNot;
 import me.hvmarci.bedwars.Listeners.PVPArenaListeners;
 import me.hvmarci.bedwars.Listeners.ShopListener;
 import me.hvmarci.bedwars.Listeners.Stop;
+import me.hvmarci.bedwars.hulyesegek.PattogATojas;
+import me.hvmarci.bedwars.hulyesegek.SajatCucc;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -56,6 +58,9 @@ public class Main extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(new PVPArenaListeners(), this);
 		getServer().getPluginManager().registerEvents(new BedBroke(), this);
 		getServer().getPluginManager().registerEvents(new DeathListener(), this);
+		//getServer().getPluginManager().registerEvents(new EggThrowEvent(), this);
+		//getServer().getPluginManager().registerEvents(new PattogATojas(), this);
+		getServer().getPluginManager().registerEvents(new SajatCucc(), this);
 		
 		getCommand("gamemode").setExecutor(new GameModeHandler());
 		getCommand("spawnhuman").setExecutor(new CommandHandler());
