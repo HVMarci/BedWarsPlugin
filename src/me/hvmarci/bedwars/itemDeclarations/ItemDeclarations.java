@@ -1,4 +1,4 @@
-package me.hvmarci.bedwars.ItemDeclarations;
+package me.hvmarci.bedwars.itemDeclarations;
 
 import java.util.ArrayList;
 import java.util.List;

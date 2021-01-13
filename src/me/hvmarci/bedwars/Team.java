@@ -1,13 +1,8 @@
 package me.hvmarci.bedwars;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
 
-import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-
 
 public class Team {
 //	private static List<String> redTeam = new ArrayList<String>();
@@ -18,6 +13,8 @@ public class Team {
 	private static org.bukkit.scoreboard.Team blueTeam = Main.scb.getTeam("blueTeam");
 	private static org.bukkit.scoreboard.Team greenTeam = Main.scb.getTeam("greenTeam");
 	private static org.bukkit.scoreboard.Team yellowTeam = Main.scb.getTeam("yellowTeam");
+	private static HashMap<TeamType, AliveType> elok = new HashMap<>();
+
 	public static void addToTeam(TeamType type, Player p) {
 
 		if (isInTeam(p, type)) {
@@ -88,36 +85,33 @@ public class Team {
 	}
 
 	public static boolean isInTeam(Player p) {
-		
-		return redTeam.hasPlayer(p)
-				|| blueTeam.hasPlayer(p)
-				|| greenTeam.hasPlayer(p)
-				|| yellowTeam.hasPlayer(p);
+
+		return redTeam.hasPlayer(p) || blueTeam.hasPlayer(p) || greenTeam.hasPlayer(p) || yellowTeam.hasPlayer(p);
 	}
 
 	public static void clearTeam(TeamType type) {
 		switch (type) {
 		case RED:
-			redTeam.getPlayers().forEach(i->{
+			redTeam.getPlayers().forEach(i -> {
 				redTeam.removePlayer(i);
 			});
-			
+
 			break;
 
 		case BLUE:
-			blueTeam.getPlayers().forEach(i->{
+			blueTeam.getPlayers().forEach(i -> {
 				blueTeam.removePlayer(i);
 			});
 			break;
 
 		case GREEN:
-			greenTeam.getPlayers().forEach(i->{
+			greenTeam.getPlayers().forEach(i -> {
 				greenTeam.removePlayer(i);
 			});
 			break;
 
 		case YELLOW:
-			yellowTeam.getPlayers().forEach(i->{
+			yellowTeam.getPlayers().forEach(i -> {
 				yellowTeam.removePlayer(i);
 			});
 			break;
@@ -163,7 +157,7 @@ public class Team {
 			return TeamType.YELLOW;
 		return null;
 	}
-	
+
 	public static org.bukkit.scoreboard.Team getTeam(TeamType type) {
 		switch (type) {
 		case RED:
@@ -178,4 +172,77 @@ public class Team {
 			return null;
 		}
 	}
+
+	public static void resetElok() {
+		elok.clear();
+		for (TeamType t : TeamType.values()) {
+			elok.put(t, AliveType.EL);
+		}
+	}
+
+	public static void halottTeam(TeamType t) {
+		elok.remove(t);
+		elok.put(t, AliveType.NINCSAGY);
+	}
+	
+	public static void mindenkihalottTeam(TeamType t) {
+		elok.remove(t);
+		elok.put(t, AliveType.HALOTT);
+	}
+
+	public static AliveType getElo(TeamType t) {
+		return elok.get(t);
+	}
+
+	public static boolean win() {
+		int elCounter = 0, nincsagyCounter = 0, halottCounter = 0;
+		
+		for (TeamType t : TeamType.values()) {
+			switch (getElo(t)) {
+			case EL:
+				elCounter++;
+				break;
+				
+			case HALOTT:
+				halottCounter++;
+				break;
+				
+			case NINCSAGY:
+				nincsagyCounter++;
+				break;
+			
+			default:
+				break;
+			}
+		}
+		
+		System.out.println(elCounter + ", " + nincsagyCounter + ", " + halottCounter);
+
+		if (elCounter == 1 && nincsagyCounter == 0)
+			return true;
+		else
+			return false;
+	}
+	
+	public static TeamType getWinner() {
+		if (!win()) {
+			throw new RuntimeException("Még nem nyert senki!");
+		} else {
+			TeamType elo = TeamType.YELLOW;
+			
+			for (TeamType t : TeamType.values()) {
+				switch (getElo(t)) {
+				case EL:
+					elo = t;
+					break;
+				
+				default:
+					break;
+				}
+			}
+			
+			return elo;
+		}
+	}
+	
 }

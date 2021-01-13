@@ -23,15 +23,15 @@ import me.hvmarci.bedwars.CommandHandlers.Invensee;
 import me.hvmarci.bedwars.CommandHandlers.KapaHandler;
 import me.hvmarci.bedwars.CommandHandlers.TpToGame;
 import me.hvmarci.bedwars.CommandHandlers.TpToPVPArena;
-import me.hvmarci.bedwars.Listeners.BedBroke;
-import me.hvmarci.bedwars.Listeners.BedWarsListeners;
-import me.hvmarci.bedwars.Listeners.DeathListener;
-import me.hvmarci.bedwars.Listeners.FrostOrNot;
-import me.hvmarci.bedwars.Listeners.PVPArenaListeners;
-import me.hvmarci.bedwars.Listeners.ShopListener;
-import me.hvmarci.bedwars.Listeners.Stop;
 import me.hvmarci.bedwars.hulyesegek.PattogATojas;
 import me.hvmarci.bedwars.hulyesegek.SajatCucc;
+import me.hvmarci.bedwars.listeners.BedBroke;
+import me.hvmarci.bedwars.listeners.BedWarsListeners;
+import me.hvmarci.bedwars.listeners.DeathListener;
+import me.hvmarci.bedwars.listeners.FrostOrNot;
+import me.hvmarci.bedwars.listeners.PVPArenaListeners;
+import me.hvmarci.bedwars.listeners.ShopListener;
+import me.hvmarci.bedwars.listeners.Stop;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -44,6 +44,7 @@ public class Main extends JavaPlugin implements Listener {
 	public static final HashMap<TeamType, Location> spawnLocs = new HashMap<TeamType, Location>();
 	public static ScoreboardManager scbm = Bukkit.getScoreboardManager();
 	public static Scoreboard scb = scbm.getMainScoreboard();
+	public static boolean megyAJatek = false;
 
 	@Override
 	public void onEnable() {

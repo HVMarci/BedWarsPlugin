@@ -1,4 +1,4 @@
-package me.hvmarci.bedwars.Listeners;
+package me.hvmarci.bedwars.listeners;
 
 import java.util.Collection;
 
@@ -26,8 +26,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
 import me.hvmarci.bedwars.Team;
-import me.hvmarci.bedwars.ItemDeclarations.ItemDeclarations;
-import me.hvmarci.bedwars.ItemDeclarations.ItemType;
+import me.hvmarci.bedwars.itemDeclarations.ItemDeclarations;
+import me.hvmarci.bedwars.itemDeclarations.ItemType;
 
 public class BedWarsListeners implements Listener {
 	

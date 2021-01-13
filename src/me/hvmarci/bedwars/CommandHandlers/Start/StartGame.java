@@ -85,9 +85,11 @@ public class StartGame implements CommandExecutor {
 
 	}
 
-	static int startSch;
+	private static int startSch;
 
 	public static void start() {
+		Team.resetElok();
+		
 		startSch = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
 			int remainingTime = 6;
 			World mainWorld = Bukkit.getServer().getWorld(Main.mainWorld);
@@ -142,8 +144,9 @@ public class StartGame implements CommandExecutor {
 						playerList.remove(randPlayer);
 					}
 					
-
 					plugin.getServer().getScheduler().cancelTask(startSch);
+					
+					Main.megyAJatek = true;
 				}
 
 			}

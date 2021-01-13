@@ -1,4 +1,4 @@
-package me.hvmarci.bedwars.Listeners;
+package me.hvmarci.bedwars.listeners;
 
 import org.bukkit.entity.Projectile;
 import org.bukkit.Location;

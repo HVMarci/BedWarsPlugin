@@ -1,4 +1,4 @@
-package me.hvmarci.bedwars.ItemDeclarations;
+package me.hvmarci.bedwars.itemDeclarations;
 
 public enum ItemType {
 	GYAPJU, DESZKA, ENDKO, OBSZIDIAN, FAKARD, KOKARD, VASKARD, GYEMANTKARD, NETHERITKARD, NETHERITFEJSZE, TOLGYCSEMETE,

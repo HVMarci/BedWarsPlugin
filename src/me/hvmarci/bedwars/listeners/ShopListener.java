@@ -1,4 +1,4 @@
-package me.hvmarci.bedwars.Listeners;
+package me.hvmarci.bedwars.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,8 +12,8 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.hvmarci.bedwars.ItemDeclarations.ItemDeclarations;
-import me.hvmarci.bedwars.ItemDeclarations.ItemType;
+import me.hvmarci.bedwars.itemDeclarations.ItemDeclarations;
+import me.hvmarci.bedwars.itemDeclarations.ItemType;
 
 public class ShopListener implements Listener {
 
