@@ -3,40 +3,50 @@ package me.hvmarci.bedwars.itemDeclarations;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
 
 public class ItemDeclarations {
 	
-	private ItemMeta createDefaultItemMeta(ItemMeta im, String nev, String ar, boolean hasEnchant, boolean shop) {
+	private static ItemMeta createDefaultItemMeta(ItemMeta im, int ar, FizetoEszkoz fiz, boolean shop) {
 		List<String> lore = new ArrayList<>();
-		
 		//lore.add(nev);
 		//lore.add("\n");
-		lore.add("Ár: " + ar);
+		lore.add("Ár: " + ar + " " + fiz.getNev());
 		
-		if (!hasEnchant && shop) {
-			im.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
-			im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-		}
 		if (shop)
 			im.setLore(lore);
-		im.setDisplayName(nev);
 		
 		return im;
 	}
 	
-	public ItemStack getItem(ItemType material, boolean shop) {
-		ItemStack is = new ItemStack(Material.DIRT);
+	public static ItemStack getItem(ItemType mat, boolean shop) {
+		ItemStack is = new ItemStack(mat.getMaterial());
 		ItemMeta im = is.getItemMeta();
-		String nev;
-		String ar;
-		boolean hasEnchant;
 		
-		switch (material) {
+		if (mat.getEnchantments() != null) {
+			for (int i = 0; i < mat.getEnchantments().length; i++) {
+				im.addEnchant(mat.getEnchantments()[i], mat.getEnchantmentLevels()[i], true);
+			}
+		}
+		
+		
+		
+		im = createDefaultItemMeta(im, mat.getAr(), mat.getFizetoEszkoz(), shop);
+		is.setItemMeta(im);
+		is.setAmount(mat.getDarab());
+		
+		if (mat.getPotionType() != null) {
+			PotionMeta pm = (PotionMeta) im;
+			pm.setBasePotionData(new PotionData(mat.getPotionType()));
+			is.setItemMeta(pm);
+		}
+		
+		return is;
+		
+		/*switch (material) {
 		case GYAPJU:
 			nev = "Gyapjú";
 			ar = "4 vas";
@@ -155,11 +165,7 @@ public class ItemDeclarations {
 			
 		default:
 			return null;
-		}
-		
-		im = createDefaultItemMeta(im, nev, ar, hasEnchant, shop);
-		is.setItemMeta(im);
-		return is;
+		}*/
 	}
 	
 	/*public ItemStack gyapju() {
